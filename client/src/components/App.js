@@ -34,7 +34,7 @@ function App() {
 
       {user ? (
         <>
-          <Header />
+          <Header user={user} setUser={setUser} />
           <NavBar />
         </>
       ) : (
