@@ -7,6 +7,7 @@ import NavBar from "./NavBar"
 import LoggedIn from "./LoggedIn"
 import Profile from "../pages/Profile"
 import DiscussionBoard from "../pages/DiscussionBoard"
+import ForumPage from "../pages/ForumPage"
 
 import LoggedOut from "./LoggedOut"
 import LoginForm from "../pages/LoginForm"
@@ -20,7 +21,7 @@ import './App.css';
 function App() {
 
   const [user, setUser] = useState(null);
-
+  
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -29,6 +30,7 @@ function App() {
       }
     });
   }, []);
+  
 
   return (
     <div className="App">
@@ -51,7 +53,9 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
-            <Route path="/discussion_board" element={<DiscussionBoard user={user} setUser={setUser} />}>
+            <Route path="/discussion_board" element={<DiscussionBoard />}>
+            </Route>
+            <Route path="forum_page" element={<ForumPage />}>
             </Route>
             <Route path="/" element={<LoggedIn user={user} />}>
             </Route>

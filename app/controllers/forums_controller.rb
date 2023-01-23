@@ -25,15 +25,15 @@ class ForumsController < ApplicationController
     #     end
     # end
 
-    # def show
-    #     user = User.find_by(id: session[:user_id])
-    #     if user
-    #         albums = Forum.where(id: user.id)
-    #         render json: albums, include: :songs
-    #     else
-    #         render json: { errors: ["Not authorized"] }, status: :unauthorized
-    #     end
-    # end
+    def show
+        user = User.find_by(id: session[:user_id])
+        if user
+            forum = Forum.find_by(id: params[:id])
+            render json: forum, include: :comments
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
+    end
 
     private 
 
