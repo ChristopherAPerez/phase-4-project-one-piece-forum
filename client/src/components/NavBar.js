@@ -12,7 +12,7 @@ function NavBar() {
             <br></br>
             <nav>
                 <NavLink className="link" to="/profile" style={linkStyle}>Profile</NavLink>
-                <NavLink className="link" to="/" style={linkStyle}>Discussion Boards</NavLink>
+                <NavLink className="link" to="/discussion_board" style={linkStyle}>Discussion Boards</NavLink>
                 <NavLink className="link" to="/" style={linkStyle}>Create Forum</NavLink>
             </nav>
         </>
