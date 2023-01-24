@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import React from "react";
 
 function ForumList({ comment, updateComments, DeleteComment }) {
 
@@ -12,12 +13,11 @@ function ForumList({ comment, updateComments, DeleteComment }) {
     function handleDelete() {
         fetch(`delete_comment/${comment.id}`, {
             method: "DELETE",
-          }).then((r) => {
+        }).then((r) => {
             if (r.ok) {
-              DeleteComment(comment);
+                DeleteComment(comment.id);
             }
-          });
-     setIsEditing(!isEditing)
+        });
     }
 
     function handleUpdate(e) {
@@ -41,10 +41,13 @@ function ForumList({ comment, updateComments, DeleteComment }) {
 
     }
 
+    // onSubmit={handleUpdate}
+
     return (
-        <form onSubmit={handleUpdate}>
+        <>
             {isEditing ? (
-                <>
+                <form onSubmit={handleUpdate}
+                >
                     <input
                         type="text"
                         name=""
@@ -53,16 +56,16 @@ function ForumList({ comment, updateComments, DeleteComment }) {
                         onChange={(e) => setNewComment(e.target.value)}
                     />
                     <input type="submit" value="Save" />
-                </>
+                </form>
             ) : (
                 <>
                     <p>{comment.user_comment}</p>
-                    {/* <button onClick={handleEdit} >Edit</button> */}
+                    <button onClick={() => setIsEditing((isEditing) => !isEditing)} >Edit</button>
                     <br></br>
-                    <button onClick={handleDelete()}>Remove</button>
+                    <button onClick={handleDelete}>Remove</button>
                 </>
             )}
-        </form >
+        </>
     )
 }
 

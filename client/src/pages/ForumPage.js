@@ -36,6 +36,7 @@ function ForumPage({ page }) {
     function DeleteComment(id) {
         const updatedComments = comments.filter((comment) => comment.id !== id);
         setComments(updatedComments);
+        console.log(updatedComments)
       }
 
     //   useEffect(() => {
