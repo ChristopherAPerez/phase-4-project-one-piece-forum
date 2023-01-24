@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Comments from "../pages/Comments"
 
-function ForumPage({ user, page }) {
+function ForumPage({ user, page, forums, setPage, updateForum, tokenForum }) {
 
     const [forum, setForum] = useState("")
     const [comments, setComments] = useState([])
@@ -13,13 +13,26 @@ function ForumPage({ user, page }) {
             if (r.ok) {
                 r.json().then((info) => {
                     setForum(info)
-                    setComments(info.comments)
+                    // setComments(info.comments)
                 });
             } else {
                 // navigate.push("/");
             }
         });
     }, [page]);
+
+      useEffect(() => {
+        fetch(`/forum_comments/${page}`).then((r) => {
+          if (r.ok) {
+            r.json().then((info) => {
+                setComments(info)
+            });
+          } else {
+            console.log("Loading")
+          }
+        });
+      }, [page]); 
+
 
     function updateComments(update) {
         const updatedComments = comments.map((comment) => {
@@ -61,24 +74,13 @@ function ForumPage({ user, page }) {
             setPost("")
     }
 
-    //   useEffect(() => {
-    //     fetch(`/forum_comments/${page}`).then((r) => {
-    //       if (r.ok) {
-    //         r.json().then((info) => {
-    //             setComments(info)
-    //         });
-    //       }
-    //     });
-    //   }, []); 
-
-
     function handleClick() {
         console.log(comments)
     }
 
     return (
         <div>
-
+            <img src={forum.forum_image} alt={forum.forum_image} width="200" height="400"/>
             <p onClick={handleClick} >{forum.title}</p>
             {comments.map((comment) => {
                 return <Comments key={comment.id} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />

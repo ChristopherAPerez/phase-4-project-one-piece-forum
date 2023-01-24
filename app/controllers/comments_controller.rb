@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             comments = Comment.where(forum_id: params[:id])
-            render json: comments
+            render json: comments, include: :user
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         end

@@ -58,12 +58,17 @@ function ForumList({ comment, updateComments, DeleteComment }) {
                     <input type="submit" value="Save" />
                 </form>
             ) : (
-                <>
+                <div>
+                    <br></br>
+                    <img src={comment.user.avatar_image} alt={comment.user.avatar_image} width="50" height="50" />
                     <p>{comment.user_comment}</p>
+                    <p>Posted: {comment.created_at.substr(0, 10)}</p>
+                    <br></br>
                     <button onClick={() => handleEdit((isEditing) => !isEditing)} >Edit</button>
                     <br></br>
                     <button onClick={handleDelete}>Remove</button>
-                </>
+                    <br></br>
+                </div>
             )}
         </>
     )

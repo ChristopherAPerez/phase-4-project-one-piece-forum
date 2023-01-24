@@ -42,6 +42,17 @@ function App() {
     });
   }, []);
 
+  function updateForum(update) {
+    const updatedViews = forums.map((forum) => {
+        if (forum.id === update.id) {
+            return update;
+        } else {
+            return forum;
+        }
+    });
+    setForums(updatedViews);
+}
+
 
   return (
     <div className="App">
@@ -64,11 +75,11 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
-            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage}/>}>
+            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage} setTokenForum={setTokenForum}/>}>
             </Route>
-            <Route path="forum_page" element={<ForumPage user={user} page={page} />}>
+            <Route path="forum_page" element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} tokenForum={tokenForum} />}>
             </Route>
-            <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums}/>}>
+            <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} setPage={setPage} updateForum={updateForum} />}>
             </Route>
             <Route path="/" element={<LoggedIn user={user} />}>
             </Route>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/forums", to: "forums#index"
   post "/create_forum", to: "forums#create"
   get "/forum_page/:id", to: "forums#show"
+  patch "/update_forum/:id", to: "forums#update"
 
   get "/comments", to: "comments#index"
   post "/create_comment", to: "comments#create"

@@ -3,7 +3,7 @@ import ForumList from "./ForumList"
 // import ForumPage from "./ForumPage";
 
 
-function DiscussionBoard( { forums, setPage } ) {
+function DiscussionBoard( { forums, setForums, setPage, updateForum, setTokenForum } ) {
 
     // const [forums, setForums] = useState([]);
     // const [page, setPage] = useState(false)
@@ -24,7 +24,7 @@ function DiscussionBoard( { forums, setPage } ) {
     return (
         <div>
             {forums.map((forum) => {
-                    return <ForumList key={forum.id} forum={forum} setPage={setPage} />
+                    return <ForumList key={forum.id} forum={forum} setPage={setPage} setTokenForum={setTokenForum}/>
                 })}
             {/* {page ? (
                 <ForumPage page={page} setPage={setPage} forumPage={forumPage} />
