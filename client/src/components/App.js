@@ -66,7 +66,7 @@ function App() {
             </Route>
             <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage}/>}>
             </Route>
-            <Route path="forum_page" element={<ForumPage page={page} />}>
+            <Route path="forum_page" element={<ForumPage user={user} page={page} />}>
             </Route>
             <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums}/>}>
             </Route>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Comments from "../pages/Comments"
 
-function ForumPage({ page }) {
+function ForumPage({ user, page }) {
 
     const [forum, setForum] = useState("")
     const [comments, setComments] = useState([])
@@ -39,7 +39,26 @@ function ForumPage({ page }) {
     }
 
     function handleSubmit(e){
+        
+        e.preventDefault();
 
+        fetch("create_comment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_comment: post,
+                likes: 0,
+                user_id: user.id,
+                forum_id: forum.id
+            }),
+        })
+            .then((r) => r.json())
+            .then((newPost) => {
+                setComments([...comments, newPost])
+            })
+            setPost("")
     }
 
     //   useEffect(() => {
@@ -64,7 +83,7 @@ function ForumPage({ page }) {
             {comments.map((comment) => {
                 return <Comments key={comment.id} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
             })}
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name=""
@@ -72,6 +91,7 @@ function ForumPage({ page }) {
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
                 />
+                <br></br>
                 <input type="submit" value="Post" />
             </form>
 

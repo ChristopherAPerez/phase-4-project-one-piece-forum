@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "/forum_page/:id", to: "forums#show"
 
   get "/comments", to: "comments#index"
+  post "/create_comment", to: "comments#create"
   get "/forum_comments/:id", to: "comments#show"
   patch "/update_comment/:id", to: "comments#update"
   delete "/delete_comment/:id", to: "comments#destroy"

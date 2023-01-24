@@ -9,6 +9,20 @@ class CommentsController < ApplicationController
         end
     end
 
+    def create
+        user = User.find_by(id: session[:user_id])
+        if user
+            comment = Comment.create(comment_params)
+            if comment
+                render json: comment, status: :created
+            else
+                render json: { errors: ["errors"] }, status: :unprocessable_entity
+            end
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
+    end
+
     def show
         user = User.find_by(id: session[:user_id])
         if user
@@ -53,7 +67,7 @@ class CommentsController < ApplicationController
     private 
 
     def comment_params
-        params.permit(:id, :user_comment, :likes, :user_id, :forum_id)
+        params.permit(:user_comment, :likes, :user_id, :forum_id)
     end
 
 end
