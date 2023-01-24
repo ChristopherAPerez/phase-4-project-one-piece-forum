@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Comments from "../pages/Comments"
 
-function ForumPage( { title, topic, image, views, comments } ) {
+function ForumPage({ page }) {
 
-    // const [forumPage, setForumPage] = useState(null);
+    const navigate = useNavigate();
+    const [forum, setForum] = useState("")
+    const [comments, setComments] = useState([])
 
-    // fetch(`/forum_page/${page}`).then((r) => {
-    //     if (r.ok) {
-    //       r.json().then((info) => setForumPage(info));
-    //     }
-    //   });
 
-    //   console.log(forumPage)
+    useEffect(() => {
+        fetch(`/forum_page/${page}`).then((r) => {
+            if (r.ok) {
+                r.json().then((info) => {
+                    setForum(info)
+                    setComments(info.comments)
+                });
+            } else {
+                navigate.push("/");
+            }
+        });
+    }, [page]);
+
+
+    //   useEffect(() => {
+    //     fetch(`/forum_comments/${page}`).then((r) => {
+    //       if (r.ok) {
+    //         r.json().then((info) => {
+    //             setComments(info)
+    //         });
+    //       }
+    //     });
+    //   }, []); 
+
+
+    function handleClick() {
+        console.log(comments)
+    }
 
     return (
-        <>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-        </>
+        <div>
+
+            <p onClick={handleClick} >{forum.title}</p>
+            {comments.map((comment) => {
+                return <Comments key={comment.id} comment={comment}/>
+            })}
+
+        </div>
     )
 }
 

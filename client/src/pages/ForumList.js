@@ -1,15 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 
-function ForumList({ forum, page, setPage, setTitle, setTopic, setImage, setViews, setComments }) {
+function ForumList({ forum, setPage }) {
+
+    const navigate = useNavigate()
 
     function handleClick() {
-        console.log(forum)
-        setPage(!page)
-        setTitle(forum.title)
-        setTopic(forum.topic)
-        setImage(forum.forum_image)
-        setViews(forum.views)
-        setComments(forum.comments)
+        // fetch(`/forum_page/${forum.id}`)
+        // .then((r) => r.json())
+        // .then((info) => {
+        //     setPage(!page)
+        //     setForumPage(info)
+        // });
+        setPage(forum.id)
+        console.log(forum.id)
+        navigate("/forum_page")
     }
 
     return (

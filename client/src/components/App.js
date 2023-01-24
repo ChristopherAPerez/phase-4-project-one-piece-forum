@@ -8,6 +8,7 @@ import LoggedIn from "./LoggedIn"
 import Profile from "../pages/Profile"
 import DiscussionBoard from "../pages/DiscussionBoard"
 import ForumPage from "../pages/ForumPage"
+import CreateForum from "../pages/CreateForum"
 
 import LoggedOut from "./LoggedOut"
 import LoginForm from "../pages/LoginForm"
@@ -21,7 +22,9 @@ import './App.css';
 function App() {
 
   const [user, setUser] = useState(null);
-  
+  const [forums, setForums] = useState([]);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -30,7 +33,17 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    fetch("/forums").then((r) => {
+      if (r.ok) {
+        r.json().then((info) => setForums(info));
+      }
+    });
+  }, []);
+
   
+
 
   return (
     <div className="App">
@@ -53,9 +66,11 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
-            <Route path="/discussion_board" element={<DiscussionBoard />}>
+            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage}/>}>
             </Route>
-            <Route path="forum_page" element={<ForumPage />}>
+            <Route path="forum_page" element={<ForumPage page={page} />}>
+            </Route>
+            <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums}/>}>
             </Route>
             <Route path="/" element={<LoggedIn user={user} />}>
             </Route>

@@ -11,19 +11,19 @@ class ForumsController < ApplicationController
         end
     end
 
-    # def create
-    #     user = User.find_by(id: session[:user_id])
-    #     if user
-    #         new_album = Album.create(album_params)
-    #         if new_album.valid?
-    #             render json: album, status: :created
-    #         else
-    #             render json: { errors: ["errors"] }, status: :unprocessable_entity
-    #         end
-    #     else
-    #         render json: { errors: ["Not authorized"] }, status: :unauthorized
-    #     end
-    # end
+    def create
+        user = User.find_by(id: session[:user_id])
+        if user
+            forum = Forum.create(forum_params)
+            if forum.valid?
+                render json: forum, status: :created
+            else
+                render json: { errors: ["errors"] }, status: :unprocessable_entity
+            end
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
+    end
 
     def show
         user = User.find_by(id: session[:user_id])

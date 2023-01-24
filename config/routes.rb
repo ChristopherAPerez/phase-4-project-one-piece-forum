@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   patch "update_profile", to: "users#update"
 
   get "/forums", to: "forums#index"
+  post "/create_forum", to: "forums#create"
   get "/forum_page/:id", to: "forums#show"
+
+  get "/forum_comments/:id", to: "comments#show"
+  patch "/update_comment/:id", to: "comments#update"
 
   ################# Routes #####################
 
