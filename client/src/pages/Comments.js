@@ -60,7 +60,7 @@ function ForumList({ comment, updateComments, DeleteComment }) {
             ) : (
                 <>
                     <p>{comment.user_comment}</p>
-                    <button onClick={() => setIsEditing((isEditing) => !isEditing)} >Edit</button>
+                    <button onClick={() => handleEdit((isEditing) => !isEditing)} >Edit</button>
                     <br></br>
                     <button onClick={handleDelete}>Remove</button>
                 </>

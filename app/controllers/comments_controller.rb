@@ -24,11 +24,11 @@ class CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             comment = Comment.find_by(id: params[:id])
-            comment.update(comment_params)
-            if comment.valid?
+            if comment.user_id == user.id
+                comment.update(comment_params)
                 render json: comment, status: :accepted
             else
-                render json: { errors: ["Errors"] }, status: :unprocessable_entity
+                render json: {error: "not your comment"}, status: :unauthorized
             end
         else 
             render json: { errors: ["Not authorized"] }, status: :unauthorized
@@ -39,11 +39,11 @@ class CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             comment = Comment.find_by(id: params[:id])
-            if comment
+            if comment.user_id == user.id
                 comment.destroy
                 head :no_content
             else
-                render json: {error: "not your comment"}, status: :not_found
+                render json: {error: "not your comment"}, status: :unauthorized
             end
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
 import Comments from "../pages/Comments"
 
 function ForumPage({ page }) {
 
-    // const navigate = useNavigate();
     const [forum, setForum] = useState("")
     const [comments, setComments] = useState([])
+    const [post, setPost] = useState("")
 
 
     useEffect(() => {
@@ -37,7 +36,11 @@ function ForumPage({ page }) {
         const updatedComments = comments.filter((comment) => comment.id !== id);
         setComments(updatedComments);
         console.log(updatedComments)
-      }
+    }
+
+    function handleSubmit(e){
+
+    }
 
     //   useEffect(() => {
     //     fetch(`/forum_comments/${page}`).then((r) => {
@@ -61,6 +64,16 @@ function ForumPage({ page }) {
             {comments.map((comment) => {
                 return <Comments key={comment.id} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
             })}
+            <form>
+                <input
+                    type="text"
+                    name=""
+                    autoComplete="off"
+                    value={post}
+                    onChange={(e) => setPost(e.target.value)}
+                />
+                <input type="submit" value="Post" />
+            </form>
 
         </div>
     )
