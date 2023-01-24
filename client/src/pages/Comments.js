@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 
-function ForumList({ comment }) {
+function ForumList({ comment, updateComments, DeleteComment }) {
 
     const [isEditing, setIsEditing] = useState(false)
-    const [newComment, setNewComment] = useState(comment.user_comment)
+    const [newComment, setNewComment] = useState("")
 
-    function handleClick() {
+    function handleEdit() {
         setIsEditing(!isEditing)
     }
 
-    function handleSubmit(e) {
+    function handleDelete() {
+        fetch(`delete_comment/${comment.id}`, {
+            method: "DELETE",
+          }).then((r) => {
+            if (r.ok) {
+              DeleteComment(comment);
+            }
+          });
+     setIsEditing(!isEditing)
+    }
+
+    function handleUpdate(e) {
 
         e.preventDefault();
 
@@ -24,15 +35,14 @@ function ForumList({ comment }) {
         })
             .then((r) => r.json())
             .then((update) => {
-                setNewComment(update)
+                updateComments(update)
+                setIsEditing(!isEditing)
             });
-
-        setIsEditing(!isEditing)
 
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
             {isEditing ? (
                 <>
                     <input
@@ -47,7 +57,9 @@ function ForumList({ comment }) {
             ) : (
                 <>
                     <p>{comment.user_comment}</p>
-                    <button onClick={handleClick} >Edit</button>
+                    {/* <button onClick={handleEdit} >Edit</button> */}
+                    <br></br>
+                    <button onClick={handleDelete()}>Remove</button>
                 </>
             )}
         </form >

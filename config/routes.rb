@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   post "/create_forum", to: "forums#create"
   get "/forum_page/:id", to: "forums#show"
 
+  get "/comments", to: "comments#index"
   get "/forum_comments/:id", to: "comments#show"
   patch "/update_comment/:id", to: "comments#update"
+  delete "/delete_comment/:id", to: "comments#destroy"
 
   ################# Routes #####################
 

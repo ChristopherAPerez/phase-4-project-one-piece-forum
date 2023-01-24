@@ -1,4 +1,13 @@
 class CommentsController < ApplicationController
+    wrap_parameters format: []
+
+    def index
+        user = User.find_by(id: session[:user_id])
+        if user
+            comments = Comment.all
+            render json: comments
+        end
+    end
 
     def show
         user = User.find_by(id: session[:user_id])
@@ -26,6 +35,20 @@ class CommentsController < ApplicationController
         end
     end
 
+    def destroy
+        user = User.find_by(id: session[:user_id])
+        if user
+            comment = Comment.find_by(id: params[:id])
+            if comment
+                comment.destroy
+                head :no_content
+            else
+                render json: {error: "not your comment"}, status: :not_found
+            end
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
+    end
 
     private 
 
