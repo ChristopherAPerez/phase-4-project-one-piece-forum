@@ -29,7 +29,7 @@ function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
     return (
         <>
 
-            <img src={user.avatar_image} alt={user.avatar_image} width="200" height="300" />
+            <img src={user.avatar_image} alt={user.avatar_image} width="200" height="200" />
 
             <form onSubmit={handleSubmit}>
 
@@ -42,7 +42,7 @@ function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
                     onChange={(e) => setAvatar(e.target.value)}
                 />
 
-                <input type="submit" value="Save" />
+                <input className="button" type="submit" value="Save" />
             </form>
         </>
     );

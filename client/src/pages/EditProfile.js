@@ -48,7 +48,7 @@ function EditProfile({ user, setUser, isEditing, setIsEditing }) {
                 onChange={(e) => setBio(e.target.value)}
             />
 
-            <input type="submit" value="Save" />
+            <input className="button" type="submit" value="Save" />
         </form>
     );
 }

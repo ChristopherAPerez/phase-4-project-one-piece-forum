@@ -36,7 +36,6 @@ function SignUpForm({ setUser }) {
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          id="username"
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -44,7 +43,6 @@ function SignUpForm({ setUser }) {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
@@ -52,12 +50,11 @@ function SignUpForm({ setUser }) {
         <label htmlFor="password">Password Confirmation</label>
         <input
           type="password"
-          id="password_confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit">Sign Up</button>
+        <button className="button" type="submit">Sign Up</button>
       </form>
     </div>
   );

@@ -1,11 +1,12 @@
 body {
+  padding-bottom: 50px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: blue;
+  background: url("/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/woodfloor_texture.jpeg");
 }
 
 code {

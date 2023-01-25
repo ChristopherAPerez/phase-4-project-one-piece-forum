@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-function CreateForum( { forums, setForums } ) {
+function CreateForum({ forums, setForums }) {
 
     const navigate = useNavigate()
     const [title, setTitle] = useState("")
@@ -28,12 +28,14 @@ function CreateForum( { forums, setForums } ) {
             .then((newForum) => {
                 setForums([...forums, newForum])
             })
-            navigate("/discussion_board")
+        navigate("/discussion_board")
 
     }
 
     return (
-        <>
+        <div className="forumForm">
+
+            <br></br>
 
             <form onSubmit={handleSubmit}>
 
@@ -57,11 +59,11 @@ function CreateForum( { forums, setForums } ) {
 
                 <br></br>
 
-                <input type="submit" />
+                <input className="button" type="submit" />
 
             </form>
 
-        </>
+        </div>
     )
 }
 

@@ -14,8 +14,9 @@ function Profile({ user, setUser }) {
       </>
       ) : (
         <>
-          <img src={user.avatar_image} alt={user.avatar_image} width="200" height="300" />
-          <button onClick={() => setIsEditingAvatar(!isEditingAvatar)} >Edit Avatar</button>
+          <img src={user.avatar_image} alt={user.avatar_image} width="200" height="200" />
+          <br></br>
+          <button className="button" onClick={() => setIsEditingAvatar(!isEditingAvatar)} >Edit Avatar</button>
         </>
       )}
 
@@ -26,7 +27,7 @@ function Profile({ user, setUser }) {
         <>
           <h3>Username: {user.username}</h3>
           <h3>About me: {user.bio}</h3>
-          <button onClick={() => setIsEditing(!isEditing)} >Edit Profile</button>
+          <button className="button" onClick={() => setIsEditing(!isEditing)} >Edit Profile</button>
         </>
       )}
 

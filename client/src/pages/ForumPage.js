@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Comments from "../pages/Comments"
 
-function ForumPage({ user, page, forums, setPage, updateForum, tokenForum }) {
+function ForumPage({ user, page }) {
 
     const [forum, setForum] = useState("")
     const [comments, setComments] = useState([])
@@ -83,18 +83,21 @@ function ForumPage({ user, page, forums, setPage, updateForum, tokenForum }) {
             <img src={forum.forum_image} alt={forum.forum_image} width="200" height="400"/>
             <p onClick={handleClick} >{forum.title}</p>
             {comments.map((comment) => {
-                return <Comments key={comment.id} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
+                return <Comments key={comment.id} forum={forum} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
             })}
             <form onSubmit={handleSubmit}>
+            <br></br>
                 <input
+                className="post"
                     type="text"
                     name=""
                     autoComplete="off"
+                    placeholder="Post and add to the discussion here..."
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
                 />
                 <br></br>
-                <input type="submit" value="Post" />
+                <input className="button" type="submit" value="Post" />
             </form>
 
         </div>

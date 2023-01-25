@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
         if user
             comment = Comment.create(comment_params)
             if comment
-                render json: comment, status: :created
+                render json: comment, include: :user, status: :created
             else
                 render json: { errors: ["errors"] }, status: :unprocessable_entity
             end
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
             comment = Comment.find_by(id: params[:id])
             if comment.user_id == user.id
                 comment.update(comment_params)
-                render json: comment, status: :accepted
+                render json: comment, include: :user, status: :accepted
             else
                 render json: {error: "not your comment"}, status: :unauthorized
             end

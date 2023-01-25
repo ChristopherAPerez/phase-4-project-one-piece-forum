@@ -10,10 +10,10 @@ function NavBar() {
     return (
         <>
             <br></br>
-            <nav>
-                <NavLink className="link" to="/profile" style={linkStyle}>Profile</NavLink>
-                <NavLink className="link" to="/discussion_board" style={linkStyle}>Discussion Boards</NavLink>
-                <NavLink className="link" to="/create_forum" style={linkStyle}>Create Forum</NavLink>
+            <nav className="navbar">
+                <NavLink className="link1" to="/profile" style={linkStyle}>Profile</NavLink>
+                <NavLink className="link2" to="/discussion_board" style={linkStyle}>Discussion Boards</NavLink>
+                <NavLink className="link3" to="/create_forum" style={linkStyle}>Create Forum</NavLink>
             </nav>
         </>
 

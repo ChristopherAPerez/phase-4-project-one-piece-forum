@@ -75,9 +75,9 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
-            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage} setTokenForum={setTokenForum}/>}>
+            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage} />}>
             </Route>
-            <Route path="forum_page" element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} tokenForum={tokenForum} />}>
+            <Route path="forum_page" element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} />}>
             </Route>
             <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} setPage={setPage} updateForum={updateForum} />}>
             </Route>
