@@ -23,10 +23,9 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [forums, setForums] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));

@@ -1,38 +1,45 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import Comments from "../pages/Comments"
 
 function ForumPage({ user, page }) {
 
+    const navigate = useNavigate()
     const [forum, setForum] = useState("")
     const [comments, setComments] = useState([])
     const [post, setPost] = useState("")
 
+    useEffect(() => {
+        if (page === 0) {
+            return navigate("/discussion_board")
+        } else {
+            fetch(`/forum_page/${page}`).then((r) => {
+                if (r.ok) {
+                    r.json().then((info) => {
+                        setForum(info)
+                    });
+                } else {
+                    console.log("Loading")
+                }
+            });
+        }
+    }, [page, navigate]);
 
     useEffect(() => {
-        fetch(`/forum_page/${page}`).then((r) => {
-            if (r.ok) {
-                r.json().then((info) => {
-                    setForum(info)
-                    // setComments(info.comments)
-                });
-            } else {
-                // navigate.push("/");
-            }
-        });
-    }, [page]);
-
-      useEffect(() => {
-        fetch(`/forum_comments/${page}`).then((r) => {
-          if (r.ok) {
-            r.json().then((info) => {
-                setComments(info)
+        if (page === 0) {
+            return navigate("/discussion_board")
+        } else {
+            fetch(`/forum_comments/${page}`).then((r) => {
+                if (r.ok) {
+                    r.json().then((info) => {
+                        setComments(info)
+                    });
+                } else {
+                    console.log("Loading")
+                }
             });
-          } else {
-            console.log("Loading")
-          }
-        });
-      }, [page]); 
-
+        }
+    }, [page, navigate]);
 
     function updateComments(update) {
         const updatedComments = comments.map((comment) => {
@@ -48,11 +55,10 @@ function ForumPage({ user, page }) {
     function DeleteComment(id) {
         const updatedComments = comments.filter((comment) => comment.id !== id);
         setComments(updatedComments);
-        console.log(updatedComments)
     }
 
-    function handleSubmit(e){
-        
+    function handleSubmit(e) {
+
         e.preventDefault();
 
         fetch("create_comment", {
@@ -71,7 +77,7 @@ function ForumPage({ user, page }) {
             .then((newPost) => {
                 setComments([...comments, newPost])
             })
-            setPost("")
+        setPost("")
     }
 
     function handleClick() {
@@ -80,15 +86,15 @@ function ForumPage({ user, page }) {
 
     return (
         <div>
-            <img src={forum.forum_image} alt={forum.forum_image} width="200" height="400"/>
+            <img src={forum.forum_image} alt={forum.forum_image} width="200" height="400" />
             <p onClick={handleClick} >{forum.title}</p>
             {comments.map((comment) => {
                 return <Comments key={comment.id} forum={forum} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
             })}
             <form onSubmit={handleSubmit}>
-            <br></br>
+                <br></br>
                 <input
-                className="post"
+                    className="post"
                     type="text"
                     name=""
                     autoComplete="off"

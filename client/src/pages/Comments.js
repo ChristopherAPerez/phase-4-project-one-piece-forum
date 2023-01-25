@@ -16,6 +16,8 @@ function ForumList({ comment, updateComments, DeleteComment }) {
         }).then((r) => {
             if (r.ok) {
                 DeleteComment(comment.id);
+            } else {
+                alert("Unathorized, not your comment!")
             }
         });
     }
@@ -33,11 +35,17 @@ function ForumList({ comment, updateComments, DeleteComment }) {
                 user_comment: newComment
             }),
         })
-            .then((r) => r.json())
-            .then((update) => {
-                updateComments(update)
-                setIsEditing(!isEditing)
-            });
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((update) => {
+                        updateComments(update)
+                        setIsEditing(!isEditing)
+                    });
+                } else {
+                    alert("Unathorized, not your comment!")
+                    setIsEditing(!isEditing)
+                }
+            })
 
     }
 
