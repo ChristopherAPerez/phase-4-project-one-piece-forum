@@ -9,7 +9,7 @@ Welcome to the One Piece Forum! In this application users can sign up and login 
 
 ### Model:
 
-![](/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/project_model.jpeg)
+![](client/src/images/project_model.jpeg)
 
 ## Requirements
 
