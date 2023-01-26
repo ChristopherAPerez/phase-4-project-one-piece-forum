@@ -80,28 +80,27 @@ function ForumPage({ user, page }) {
         setPost("")
     }
 
-    function handleClick() {
-        console.log(comments)
-    }
-
     return (
         <div>
             <img src={forum.forum_image} alt={forum.forum_image} width="200" height="400" />
-            <p onClick={handleClick} >{forum.title}</p>
+            <h2>{forum.title}</h2>
+            <h3>Details:<br></br></h3>
+            <p>{forum.detail}</p>
+            <div className="line"></div>
+            <h3>Comments:</h3>
             {comments.map((comment) => {
-                return <Comments key={comment.id} forum={forum} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
+                return <Comments key={comment.id} user={user} forum={forum} comment={comment} updateComments={updateComments} DeleteComment={DeleteComment} />
             })}
             <form onSubmit={handleSubmit}>
                 <br></br>
-                <input
+                <textarea
                     className="post"
-                    type="text"
                     name=""
                     autoComplete="off"
                     placeholder="Post and add to the discussion here..."
                     value={post}
-                    onChange={(e) => setPost(e.target.value)}
-                />
+                    onChange={(e) => setPost(e.target.value)}></textarea>
+                <br></br>
                 <br></br>
                 <input className="button" type="submit" value="Post" />
             </form>

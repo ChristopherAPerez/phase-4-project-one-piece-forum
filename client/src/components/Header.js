@@ -25,15 +25,17 @@ function Header({ user, setUser }) {
       {/* <h1 onClick={handleHome}>🏴‍☠️ One Piece Forum 🏴‍☠️</h1> */}
       <div>
         <br></br>
-        <img src={logo} alt={logo} onClick={handleHome} />
-        <h1>Forum</h1>
+        <img className="logo" src={logo} alt={logo} onClick={handleHome} />
       </div>
       {user ? (
         <>
+        <br></br>
           <button className="button" onClick={handleLogoutClick} >Logout</button>
         </>
       ) : (
         <>
+        <br></br>
+        <br></br>
           <Link className="link" to="/signup">Signup</Link>
           <Link className="link" to="/login">Login</Link>
         </>

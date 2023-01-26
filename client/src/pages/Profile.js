@@ -14,7 +14,8 @@ function Profile({ user, setUser }) {
       </>
       ) : (
         <>
-          <img src={user.avatar_image} alt={user.avatar_image} width="200" height="200" />
+          <img className="avatar" src={user.avatar_image} alt={user.avatar_image} width="200" height="200" />
+          <br></br>
           <br></br>
           <button className="button" onClick={() => setIsEditingAvatar(!isEditingAvatar)} >Edit Avatar</button>
         </>

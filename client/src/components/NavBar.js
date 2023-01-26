@@ -15,6 +15,8 @@ function NavBar() {
                 <NavLink className="link2" to="/discussion_board" style={linkStyle}>Discussion Boards</NavLink>
                 <NavLink className="link3" to="/create_forum" style={linkStyle}>Create Forum</NavLink>
             </nav>
+            <br></br>
+            <div className="navborder"></div>
         </>
 
     );

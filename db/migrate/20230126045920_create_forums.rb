@@ -3,8 +3,8 @@ class CreateForums < ActiveRecord::Migration[6.1]
     create_table :forums do |t|
       t.string :title
       t.string :topic
+      t.string :detail
       t.string :forum_image
-      t.integer :views
 
       t.timestamps
     end

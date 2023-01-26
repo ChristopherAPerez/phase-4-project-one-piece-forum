@@ -7,6 +7,7 @@ function CreateForum({ forums, setForums }) {
     const [title, setTitle] = useState("")
     const [topic, setTopic] = useState("Discussion")
     const [image, setImage] = useState("")
+    const [details, setDetails] = useState("")
 
     function handleSubmit(e) {
 
@@ -20,8 +21,8 @@ function CreateForum({ forums, setForums }) {
             body: JSON.stringify({
                 title: title,
                 topic: topic,
-                forum_image: image,
-                views: 0
+                detail:  details,
+                forum_image: image
             }),
         })
             .then((r) => r.json())
@@ -39,12 +40,8 @@ function CreateForum({ forums, setForums }) {
 
             <form onSubmit={handleSubmit}>
 
-                <label>Title:</label>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
-                <br></br>
-
-                <label>Topic:</label>
+            <label>Topic:</label><br></br>
                 <select onChange={(e) => setTopic(e.target.value)} >
                     <option value="Discussion">Discussion</option>
                     <option value="Battle">Battle</option>
@@ -54,8 +51,18 @@ function CreateForum({ forums, setForums }) {
 
                 <br></br>
 
-                <label>Image:</label>
-                <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
+                <label>Title:</label><br></br>
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+                <br></br>
+
+                <label>Image:</label><br></br>
+                <textarea value={image} onChange={(e) => setImage(e.target.value)} rows="2" cols="30"></textarea>
+
+                <br></br>
+
+                <label>Details:</label><br></br>
+                <textarea value={details} onChange={(e) => setDetails(e.target.value)} rows="4" cols="45"></textarea>
 
                 <br></br>
 

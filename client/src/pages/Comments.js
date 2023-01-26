@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 // import React from "react";
 
-function ForumList({ comment, updateComments, DeleteComment }) {
+function ForumList({ user, comment, updateComments, DeleteComment }) {
 
+    const navigate = useNavigate()
     const [isEditing, setIsEditing] = useState(false)
     const [newComment, setNewComment] = useState("")
 
@@ -49,28 +51,65 @@ function ForumList({ comment, updateComments, DeleteComment }) {
 
     }
 
+    function handleProfile() {
+        if (user.id === comment.user_id) {
+            navigate("/profile")
+        }
+    }
+
+    function handleLike() {
+        fetch(`update_likes/${comment.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                likes: comment.likes += 1
+            }),
+        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((update) => {
+                        updateComments(update)
+                    });
+                }
+            })
+    }
+
     return (
         <div className="comment" >
             {isEditing ? (
-                <form className="commentContainer" onSubmit={handleUpdate}>
-                    <input
-                        type="text"
-                        name=""
-                        autoComplete="off"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <input className="button" type="submit" value="Save" />
-                </form>
+                <div className="commentContainer" >
+                    <img className="comment_avatar" onClick={handleProfile} src={comment.user.avatar_image} alt={comment.user.avatar_image} width="75" height="75" />
+                    <form onSubmit={handleUpdate}>
+                        <input
+                            type="text"
+                            name=""
+                            autoComplete="off"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                        />
+                        <br></br>
+                        <p>Posted: {comment.created_at.substr(0, 10)}</p>
+                        <br></br>
+                        <input className="button" type="submit" value="Save" />
+                    </form>
+                </div>
             ) : (
                 <div className="commentContainer" >
-                    <img className="comment_avatar" src={comment.user.avatar_image} alt={comment.user.avatar_image} width="75" height="75" />
+                    <img onClick={handleProfile} className="comment_avatar" src={comment.user.avatar_image} alt={comment.user.avatar_image} width="75" height="75" />
                     <div>
                         <p>{comment.user_comment}</p>
                         <p>Posted: {comment.created_at.substr(0, 10)}</p>
                     </div>
-                    <button className="comment_button" onClick={() => handleEdit((isEditing) => !isEditing)} >📝</button>
-                    <button className="comment_button" onClick={handleDelete}>☠️</button>
+                    <div>
+                        <div></div>
+                        <button className="commentButton" onClick={() => handleEdit((isEditing) => !isEditing)} >📝</button>
+                        <button className="commentButton" onClick={handleDelete}>☠️</button>
+                        <div className="likeContainer" >
+                            <button className="likeButton" onClick={handleLike}>{comment.likes} ❤️</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

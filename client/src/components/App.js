@@ -78,6 +78,8 @@ function App() {
             </Route>
             <Route path="forum_page" element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} />}>
             </Route>
+            <Route path={"forum_page/" + page} element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} />}>
+            </Route>
             <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} setPage={setPage} updateForum={updateForum} />}>
             </Route>
             <Route path="/" element={<LoggedIn user={user} />}>

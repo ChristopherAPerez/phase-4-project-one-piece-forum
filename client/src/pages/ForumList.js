@@ -14,7 +14,7 @@ function ForumList({ forum, setPage }) {
     return (
         <div className="forumList">
             <br></br>
-            <h2 onClick={handleClick}>{forum.title}</h2>
+            <h2 className="forumTitle" onClick={handleClick}>{forum.title}</h2>
             <p>Created: {forum.created_at.substr(0, 10)}</p>
         </div>
     )

@@ -8,6 +8,7 @@
   margin-top: 80px;
   font-family: "Papyrus";
   padding-bottom: 50px;
+  box-shadow: 0 30px 40px rgb(0, 0, 0);
 }
 
 .App-logo {
@@ -46,12 +47,8 @@
   }
 }
 
-.forumList {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  padding-bottom: 10px;
-  border-bottom: 1px solid gray;
+.avatar{
+  box-shadow: 0 30px 40px rgb(0, 0, 0);
 }
 
 .button {
@@ -66,6 +63,15 @@
   padding-bottom: 20px;
 }
 
+.comment_avatar{
+  float: left;
+}
+
+.commentButton {
+  margin: 5px;
+  background-image: url("/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/paper_texture.jpeg");
+}
+
 .commentContainer {
   margin-left: auto;
   margin-right: auto;
@@ -74,6 +80,42 @@
   padding-bottom: 10px;
   padding-left: 5px;
   box-shadow: 0 30px 40px rgb(0, 0, 0);
+}
+
+.forumForm{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  box-shadow: 0 30px 40px rgb(0, 0, 0);
+}
+
+.forumList {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed gray;
+}
+
+.forumTitle{
+  cursor: pointer;
+}
+
+.likeButton {
+  background-image: url("/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/paper_texture.jpeg");
+}
+
+.likeContainer {
+  float: right;
+  padding-right: 10px;
+  padding-top: 6px;
+}
+
+.line{
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid gray;
 }
 
 .link{
@@ -108,6 +150,10 @@
   height: 10px;
 }
 
+.logo{
+  box-shadow: 0 30px 40px rgb(0, 0, 0);
+}
+
 .post{
   width: 80%;
   height: 50px;
@@ -115,11 +161,10 @@
   background-color: #f8f8f8;
 }
 
-.comment_avatar{
-  float: left;
-}
 
-.comment_button {
-  margin: 5px;
-  background-image: url("/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/paper_texture.jpeg");
+.navborder{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid gray;
 }

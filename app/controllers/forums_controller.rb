@@ -51,6 +51,6 @@ class ForumsController < ApplicationController
     private 
 
     def forum_params
-        params.permit(:title, :topic, :forum_image, :views)
+        params.permit(:title, :topic, :detail, :forum_image)
     end
 end

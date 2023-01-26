@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post "/create_comment", to: "comments#create"
   get "/forum_comments/:id", to: "comments#show"
   patch "/update_comment/:id", to: "comments#update"
+  patch "/update_likes/:id", to: "comments#updateLikes"
   delete "/delete_comment/:id", to: "comments#destroy"
 
   ################# Routes #####################

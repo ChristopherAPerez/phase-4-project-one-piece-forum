@@ -49,6 +49,21 @@ class CommentsController < ApplicationController
         end
     end
 
+    def updateLikes
+        user = User.find_by(id: session[:user_id])
+        if user
+            comment = Comment.find_by(id: params[:id])
+            if comment
+                comment.update(comment_params)
+                render json: comment, include: :user, status: :accepted
+            else
+                render json: {error: "not your comment"}, status: :unauthorized
+            end
+        else 
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
+    end
+
     def destroy
         user = User.find_by(id: session[:user_id])
         if user
