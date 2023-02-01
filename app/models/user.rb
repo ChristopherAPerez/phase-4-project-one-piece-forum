@@ -5,4 +5,5 @@ class User < ApplicationRecord
     has_many :forums, through: :comments
 
     validates :username, presence: true, uniqueness: true
+    validates :avatar_image, presence: true
 end

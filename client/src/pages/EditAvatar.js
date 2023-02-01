@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import GenreOptions from "./GenreOptions"
 
 function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
 
@@ -19,11 +18,16 @@ function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
                 avatar_image: avatar
             }),
         })
-            .then((r) => r.json())
-            .then((update) => {
-                setUser(update)
-                setIsEditingAvatar(!isEditingAvatar)
-            });
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((update) => {
+                        setUser(update)
+                        setIsEditingAvatar(!isEditingAvatar)
+                    });
+                } else {
+                    alert("You must have an avatar!")
+                }
+            })
     }
 
     return (

@@ -1,29 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Header from "./Header"
 import NavBar from "./NavBar"
-
 import LoggedIn from "./LoggedIn"
 import Profile from "../pages/Profile"
 import DiscussionBoard from "../pages/DiscussionBoard"
-import ForumPage from "../pages/ForumPage"
 import CreateForum from "../pages/CreateForum"
-
 import LoggedOut from "./LoggedOut"
 import LoginForm from "../pages/LoginForm"
 import SignUpForm from "../pages/SignUpForm";
-
-
-
-// import logo from './logo.svg';
+import Page from "../pages/Page"
+import Error from "../pages/Error"
 import './App.css';
 
 function App() {
 
   const [user, setUser] = useState(null);
   const [forums, setForums] = useState([]);
-  const [page, setPage] = useState(0);
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -74,15 +67,15 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
-            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} setPage={setPage} />}>
+            <Route path="/discussion_board" element={<DiscussionBoard forums={forums} />}>
             </Route>
-            <Route path="forum_page" element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} />}>
+            <Route path={"forum_page/:id"} element={<Page user={user} />}>
             </Route>
-            <Route path={"forum_page/" + page} element={<ForumPage forums={forums} user={user} page={page} updateForum={updateForum} />}>
-            </Route>
-            <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} setPage={setPage} updateForum={updateForum} />}>
+            <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} updateForum={updateForum} />}>
             </Route>
             <Route path="/" element={<LoggedIn user={user} />}>
+            </Route>
+            <Route path="*" element={<Error />}>
             </Route>
           </Routes>
 
@@ -94,6 +87,8 @@ function App() {
             <Route path="/login" element={<LoginForm setUser={setUser} />}>
             </Route>
             <Route path="/" element={<LoggedOut user={user} />}>
+            </Route>
+            <Route path="*" element={<Error />}>
             </Route>
           </Routes>
 

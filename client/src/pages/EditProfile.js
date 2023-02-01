@@ -20,11 +20,16 @@ function EditProfile({ user, setUser, isEditing, setIsEditing }) {
             bio: bio,
         }),
         })
-        .then((r) => r.json())
-        .then((update) => {
-            setUser(update)
-            setIsEditing(!isEditing)
-        });
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((update) => {
+                    setUser(update)
+                    setIsEditing(!isEditing)
+                });
+            } else {
+                alert("Username can't be blank!")
+            }
+        })
     }
 
     return (

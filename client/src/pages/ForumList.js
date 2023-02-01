@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
 
-function ForumList({ forum, setPage }) {
+function ForumList({ forum }) {
 
     const navigate = useNavigate()
 
     function handleClick() {
-        setPage(forum.id)
-        navigate("/forum_page")
+        navigate("/forum_page/" + forum.id)
     }
 
 

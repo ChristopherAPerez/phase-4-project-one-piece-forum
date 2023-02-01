@@ -29,7 +29,11 @@ class ForumsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             forum = Forum.find_by(id: params[:id])
-            render json: forum, include: :comments
+            if forum
+                render json: forum, include: :comments
+            else
+                render json: { errors: ["Not found"] }, status: :not_found
+            end
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         end

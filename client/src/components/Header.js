@@ -22,7 +22,6 @@ function Header({ user, setUser }) {
 
   return (
     <div className="header">
-      {/* <h1 onClick={handleHome}>🏴‍☠️ One Piece Forum 🏴‍☠️</h1> */}
       <div>
         <br></br>
         <img className="logo" src={logo} alt={logo} onClick={handleHome} />

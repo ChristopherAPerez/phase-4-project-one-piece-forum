@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             comment = Comment.create(comment_params)
-            if comment
+            if comment.valid?
                 render json: comment, include: :user, status: :created
             else
                 render json: { errors: ["errors"] }, status: :unprocessable_entity
@@ -27,7 +27,11 @@ class CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             comments = Comment.where(forum_id: params[:id])
-            render json: comments, include: :user
+            if comments
+                render json: comments, include: :user
+            else
+                render json: { errors: ["Not found"] }, status: :not_found 
+            end
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         end

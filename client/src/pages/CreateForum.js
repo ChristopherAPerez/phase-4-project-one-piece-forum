@@ -25,11 +25,17 @@ function CreateForum({ forums, setForums }) {
                 forum_image: image
             }),
         })
-            .then((r) => r.json())
-            .then((newForum) => {
-                setForums([...forums, newForum])
-            })
-        navigate("/discussion_board")
+
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((newForum) => {
+                    setForums([...forums, newForum])
+                    navigate("/discussion_board")
+                });
+            } else {
+                alert("Forum needs a title!")
+            }
+        })
 
     }
 
