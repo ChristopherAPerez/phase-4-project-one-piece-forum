@@ -23,8 +23,9 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: session[:user_id])
+        forum = user.forums.uniq
         if user
-            render json: user, include: [:forums, :comments]
+            render json: user, include: ["forums"]
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         end
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
             if user.valid?
                 render json: user, status: :accepted
             else
-                render json: { errors: ["Errors"] }, status: :unprocessable_entity
+                render json: { error: "You must have a username and avatar!" }, status: :unprocessable_entity
             end
         else 
             render json: { errors: ["Not authorized"] }, status: :unauthorized

@@ -14,6 +14,7 @@ function Header({ user, setUser }) {
       }
     });
     navigate("/")
+    window.location.reload()
   }
 
   function handleHome() {

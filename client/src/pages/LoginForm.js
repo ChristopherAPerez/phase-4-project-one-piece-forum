@@ -16,8 +16,13 @@ function LoginForm({ setUser }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
+        r.json().then((user) => setUser(user))
+        window.location.reload();
+      } else {
+        r.json().then((err) => {
+            alert(err.errors)
+        })
+    }
     });
     navigate("/")
   }

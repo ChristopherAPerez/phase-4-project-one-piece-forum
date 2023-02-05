@@ -18,7 +18,7 @@ class ForumsController < ApplicationController
             if forum.valid?
                 render json: forum, status: :created
             else
-                render json: { errors: ["errors"] }, status: :unprocessable_entity
+                render json: { error: "The forum needs a title at least!" }, status: :unprocessable_entity
             end
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized

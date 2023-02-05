@@ -147,6 +147,14 @@
   color: black;
   display: inline-block;
   border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  height: 10px;
+}
+
+.link4 {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
   height: 10px;
 }
 

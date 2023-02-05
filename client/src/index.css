@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("../src/images/woodfloor_texture.jpeg");
+  background-color: black;
 }
 
 code {

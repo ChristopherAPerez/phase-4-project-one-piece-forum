@@ -33,7 +33,9 @@ function CreateForum({ forums, setForums }) {
                     navigate("/discussion_board")
                 });
             } else {
-                alert("Forum needs a title!")
+                r.json().then((err) => {
+                    alert(err.error)
+                })
             }
         })
 

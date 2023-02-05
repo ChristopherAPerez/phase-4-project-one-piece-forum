@@ -9,6 +9,7 @@ function SignUpForm({ setUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     fetch("/users", {
       method: "POST",
       headers: {
@@ -23,8 +24,13 @@ function SignUpForm({ setUser }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
+        r.json().then((user) => setUser(user))
+        window.location.reload();
+      } else {
+        r.json().then((err) => {
+            alert(err.errors)
+        })
+    }
     });
     navigate("/")
   }

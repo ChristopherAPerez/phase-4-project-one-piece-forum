@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./Header"
 import NavBar from "./NavBar"
 import LoggedIn from "./LoggedIn"
+
 import Profile from "../pages/Profile"
+import ActivityList from "../pages/ActivityList"
 import DiscussionBoard from "../pages/DiscussionBoard"
+import Page from "../pages/Page"
 import CreateForum from "../pages/CreateForum"
+
 import LoggedOut from "./LoggedOut"
 import LoginForm from "../pages/LoginForm"
 import SignUpForm from "../pages/SignUpForm";
-import Page from "../pages/Page"
+
 import Error from "../pages/Error"
+
 import './App.css';
 
 function App() {
 
   const [user, setUser] = useState(null);
   const [forums, setForums] = useState([]);
+  const [userForums, setUserForums] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+          setUserForums(user.forums)
+        })
       }
     });
   }, []);
@@ -45,14 +55,13 @@ function App() {
     setForums(updatedViews);
 }
 
-
   return (
     <div className="App">
 
       {user ? (
         <>
           <Header user={user} setUser={setUser} />
-          <NavBar />
+          <NavBar setUser={setUser} />
         </>
       ) : (
         <Header />
@@ -67,9 +76,11 @@ function App() {
           <Routes>
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />}>
             </Route>
+            <Route path="/activity" element={<ActivityList userForums={userForums} />}>
+            </Route>
             <Route path="/discussion_board" element={<DiscussionBoard forums={forums} />}>
             </Route>
-            <Route path={"forum_page/:id"} element={<Page user={user} />}>
+            <Route path={"forum_page/:id"} element={<Page user={user} userForums={userForums} setUserForums={setUserForums} />}>
             </Route>
             <Route path="create_forum" element={<CreateForum forums={forums} setForums={setForums} updateForum={updateForum} />}>
             </Route>

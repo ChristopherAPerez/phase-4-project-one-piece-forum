@@ -28,8 +28,10 @@ function Comment({ user, comment, updateComments, DeleteComment }) {
                         setIsEditing(!isEditing)
                     });
                 } else {
-                    alert("Unathorized, not your comment!")
-                    setIsEditing(!isEditing)
+                    r.json().then((err) => {
+                        alert(err.error)
+                        setIsEditing(!isEditing)
+                    })
                 }
             })
 
@@ -42,28 +44,36 @@ function Comment({ user, comment, updateComments, DeleteComment }) {
             if (r.ok) {
                 DeleteComment(comment.id);
             } else {
-                alert("Unathorized, not your comment!")
+                r.json().then((err) => {
+                    alert(err.error)
+                })
             }
         });
     }
 
     function handleLike() {
+
         fetch(`/likes/${comment.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                likes: comment.likes += 1
+                likes: (user.id !== comment.user_id ? comment.likes += 1 : comment.likes)
             }),
         })
             .then((r) => {
                 if (r.ok) {
                     r.json().then((update) => {
                         updateComments(update)
-                    });
+                    })
+                } else {
+                    r.json().then((err) => {
+                        alert(err.error)
+                    })
                 }
             })
+        
     }
 
     function handleProfile() {

@@ -4,7 +4,7 @@ import PageHeader from "./PageHeader"
 import PageComments from "./PageComments"
 import Post from "./Post"
 
-function Page({ user }) {
+function Page({ user, userForums, setUserForums }) {
 
     const navigate = useNavigate()
     const params = useParams()
@@ -60,7 +60,7 @@ function Page({ user }) {
             {errors.map((error) => {
                 return <p key={error}>{error}</p>
             })}
-            <Post user={user} forum={forum} comments={comments} setComments={setComments} />
+            <Post user={user} forum={forum} comments={comments} setComments={setComments} userForums={userForums} setUserForums={setUserForums} />
         </div>
     )
 }

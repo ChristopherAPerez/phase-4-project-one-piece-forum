@@ -14,9 +14,9 @@ class CommentsController < ApplicationController
         if user
             comment = Comment.create(comment_params)
             if comment.valid?
-                render json: comment, include: :user, status: :created
+                render json: comment, include: [:user, :forum], status: :created
             else
-                render json: { errors: ["errors"] }, status: :unprocessable_entity
+                render json: { error: "Error: Cannot be blank! Don't be shy! Share your opinion!" }, status: :unprocessable_entity
             end
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized

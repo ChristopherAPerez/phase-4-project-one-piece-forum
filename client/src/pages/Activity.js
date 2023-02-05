@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
 
-function ForumList({ forum }) {
+function Activity( { forum } ){
 
     const navigate = useNavigate()
 
@@ -16,6 +16,7 @@ function ForumList({ forum }) {
             <p>Created: {forum.created_at.substr(0, 10)}</p>
         </div>
     )
+
 }
 
-export default ForumList;
+export default Activity;

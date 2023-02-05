@@ -25,7 +25,10 @@ function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
                         setIsEditingAvatar(!isEditingAvatar)
                     });
                 } else {
-                    alert("You must have an avatar!")
+                    r.json().then((err) => {
+                        alert(err.error)
+                        setIsEditingAvatar(!isEditingAvatar)
+                    })
                 }
             })
     }

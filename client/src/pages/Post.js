@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-function Post( { user, comments, forum, setComments } ) {
+function Post( { user, comments, forum, setComments, userForums, setUserForums } ) {
 
     const [post, setPost] = useState("")
 
@@ -24,9 +24,12 @@ function Post( { user, comments, forum, setComments } ) {
             if (r.ok) {
                 r.json().then((newPost) => {
                     setComments([...comments, newPost])
+                    setUserForums([...userForums, newPost.forum])
                 });
             } else {
-                alert("Don't be shy! Share your opinion!")
+                r.json().then((err) => {
+                    alert(err.error)
+                })
             }
         })
         setPost("")

@@ -27,7 +27,10 @@ function EditProfile({ user, setUser, isEditing, setIsEditing }) {
                     setIsEditing(!isEditing)
                 });
             } else {
-                alert("Username can't be blank!")
+                r.json().then((err) => {
+                    alert(err.error)
+                    setIsEditing(!isEditing)
+                })
             }
         })
     }
