@@ -13,7 +13,7 @@ function CreateForum({ forums, setForums }) {
 
         e.preventDefault();
 
-        fetch("create_forum", {
+        fetch("forums", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

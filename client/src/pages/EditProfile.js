@@ -10,7 +10,7 @@ function EditProfile({ user, setUser, isEditing, setIsEditing }) {
 
         e.preventDefault();
 
-        fetch('update_profile', {
+        fetch(`/users/${user.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function EditAvatar({ user, setUser, isEditingAvatar, setIsEditingAvatar }) {
 
         e.preventDefault();
 
-        fetch('update_profile', {
+        fetch(`/users/${user.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

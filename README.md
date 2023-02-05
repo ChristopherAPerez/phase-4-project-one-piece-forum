@@ -74,7 +74,7 @@ $ rails db:create
 Next, focus on the frontend needs:
 
 ```console
-$ npm install
+$ npm install --prefix client
 ```
 
 After, run the migrations and use the provided seeds.rb file to `seed` the database. This will provide data for the application.
@@ -96,7 +96,7 @@ $ rails s
 After, start the react-app, also in a seperate terminal:
 
 ```console
-$ npm start
+$ npm start — prefix client
 ```
 
 And you've set up the frontend and backend for the appilcation!

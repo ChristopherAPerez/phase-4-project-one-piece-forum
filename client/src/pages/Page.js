@@ -13,7 +13,7 @@ function Page({ user }) {
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
-        fetch(`/forum_page/${params.id}`).then((r) => {
+        fetch(`/forums/${params.id}`).then((r) => {
             if (r.ok) {
                 r.json().then((info) => {
                     setForum(info)
@@ -26,7 +26,7 @@ function Page({ user }) {
     }, [params, navigate, setErrors]);
 
     useEffect(() => {
-        fetch(`/forum_comments/${params.id}`).then((r) => {
+        fetch(`/forum_page/comments/${params.id}`).then((r) => {
             if (r.ok) {
                 r.json().then((info) => {
                     setComments(info)

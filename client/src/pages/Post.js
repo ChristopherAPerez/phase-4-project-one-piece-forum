@@ -8,7 +8,7 @@ function Post( { user, comments, forum, setComments } ) {
 
         e.preventDefault();
 
-        fetch("create_comment", {
+        fetch("comments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

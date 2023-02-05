@@ -5,14 +5,14 @@ function Comment({ user, comment, updateComments, DeleteComment }) {
 
     const navigate = useNavigate()
     const [isEditing, setIsEditing] = useState(false)
-    const [newComment, setNewComment] = useState("")
+    const [newComment, setNewComment] = useState(comment.user_comment)
 
 
     function handleUpdate(e) {
 
         e.preventDefault();
 
-        fetch(`update_comment/${comment.id}`, {
+        fetch(`/forum_page/comments/${comment.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ function Comment({ user, comment, updateComments, DeleteComment }) {
     }
 
     function handleDelete() {
-        fetch(`delete_comment/${comment.id}`, {
+        fetch(`/forum_page/comments/${comment.id}`, {
             method: "DELETE",
         }).then((r) => {
             if (r.ok) {
@@ -48,7 +48,7 @@ function Comment({ user, comment, updateComments, DeleteComment }) {
     }
 
     function handleLike() {
-        fetch(`update_likes/${comment.id}`, {
+        fetch(`/likes/${comment.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

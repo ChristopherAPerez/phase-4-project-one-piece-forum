@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("/Users/chickngamer/phase-4-project-one-piece-forum/client/src/images/woodfloor_texture.jpeg");
+  background: url("../src/images/woodfloor_texture.jpeg");
 }
 
 code {
