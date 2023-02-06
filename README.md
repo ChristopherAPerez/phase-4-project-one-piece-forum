@@ -96,7 +96,7 @@ $ rails s
 After, start the react-app, also in a seperate terminal:
 
 ```console
-$ npm start — prefix client
+$ npm install --prefix client
 ```
 
 And you've set up the frontend and backend for the appilcation!

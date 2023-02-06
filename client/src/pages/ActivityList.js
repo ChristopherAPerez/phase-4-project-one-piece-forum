@@ -4,10 +4,8 @@ import Activity from "./Activity"
 function ActivityList( { userForums } ){
 
     const commented_forums = userForums.filter((obj, index, self) => {
-        return self.findIndex(t => t.id === obj.id) === index
+        return self.findIndex(element => element.id === obj.id) === index
     })
-
-    console.log(commented_forums)
 
     return (
         <>

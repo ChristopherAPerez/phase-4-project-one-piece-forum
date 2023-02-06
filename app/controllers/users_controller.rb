@@ -45,6 +45,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def search
+        user = User.search(params[:username])
+        render json: user
+    end
+
     private 
 
     def user_params

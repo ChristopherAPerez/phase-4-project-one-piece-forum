@@ -21,23 +21,23 @@ function CreateForum({ forums, setForums }) {
             body: JSON.stringify({
                 title: title,
                 topic: topic,
-                detail:  details,
+                detail: details,
                 forum_image: image
             }),
         })
 
-        .then((r) => {
-            if (r.ok) {
-                r.json().then((newForum) => {
-                    setForums([...forums, newForum])
-                    navigate("/discussion_board")
-                });
-            } else {
-                r.json().then((err) => {
-                    alert(err.error)
-                })
-            }
-        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((newForum) => {
+                        setForums([...forums, newForum])
+                        navigate("/discussion_board")
+                    });
+                } else {
+                    r.json().then((err) => {
+                        alert(err.error)
+                    })
+                }
+            })
 
     }
 
@@ -49,9 +49,9 @@ function CreateForum({ forums, setForums }) {
             <form onSubmit={handleSubmit}>
 
 
-            <label>Topic:</label><br></br>
+                <label>Topic:</label><br></br>
                 <select onChange={(e) => setTopic(e.target.value)} >
-                    <option value="Discussion">Discussion</option>
+                    <option value="Chapter Discussion">Chapter Discussion</option>
                     <option value="Battle">Battle</option>
                     <option value="Theory">Theory</option>
                     <option value="Review">Review</option>

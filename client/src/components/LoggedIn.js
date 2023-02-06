@@ -1,9 +1,14 @@
+import React from "react";
+
 function LoggedIn() {
-    return (
-      <>
+
+
+
+  return (
+    <>
       <p>Welcome</p>
-      </>
-    )
-    }
-    
-    export default LoggedIn;
+    </>
+  )
+}
+
+export default LoggedIn;

@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
         if user
             comments = Comment.where(forum_id: params[:id])
             if comments
-                render json: comments, include: :user
+                render json: comments, include: [:user, :forum]
             else
                 render json: { errors: ["Not found"] }, status: :not_found 
             end

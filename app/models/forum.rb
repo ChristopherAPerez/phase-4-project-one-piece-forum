@@ -3,4 +3,5 @@ class Forum < ApplicationRecord
     has_many :users, through: :comments
 
     validates :title, presence: true, uniqueness: true
+
 end
